@@ -27,7 +27,8 @@ jobs:
         pip install ruff
 
     - name: Lint with Ruff
-      run: ruff .
+      run: ruff check .
+
 
     - name: Format code with Ruff
       run: ruff --fix
