@@ -1,4 +1,4 @@
-name: Installing Python
+name: Exclude windows
 on:
   - push
 
