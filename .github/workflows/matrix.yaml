@@ -1,30 +1,30 @@
-name: Matrix Strategy - Install Node.js
+name: System Information Check
+
 on: push
 
 jobs:
-  install-node:
+  system-info:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [14, 16, 18, 20]
+        shell: [bash, sh, zsh]
         exclude:
           - os: windows-latest
-            node-version: 14  # Exclude Node.js 14 on Windows
+            shell: zsh  # Exclude Zsh on Windows (unsupported)
 
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Verify Node.js Installation
+      - name: Display System Information
+        shell: ${{ matrix.shell }}
         run: |
-          echo "Node.js Version:"
-          node --version
-          echo "NPM Version:"
-          npm --version
+          echo "Running on OS: ${{ matrix.os }} with shell: ${{ matrix.shell }}"
+          echo "OS Information:"
+          uname -a
+          echo "Current Date & Time:"
+          date
+          echo "System Uptime:"
+          uptime
