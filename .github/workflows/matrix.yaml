@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Display System Information
-        shell: ${{ matrix.shell }}
+        shell: bash  # Default shell for execution
         run: |
           echo "Running on OS: ${{ matrix.os }} with shell: ${{ matrix.shell }}"
           echo "OS Information:"
@@ -28,3 +28,11 @@ jobs:
           date
           echo "System Uptime:"
           uptime
+        env:
+          SHELL_CMD: ${{ matrix.shell }}
+
+      - name: Run Command in Selected Shell
+        shell: bash
+        run: |
+          echo "Executing in $SHELL_CMD..."
+          $SHELL_CMD -c 'echo "Hello from $(whoami) on $(uname -s)"'
