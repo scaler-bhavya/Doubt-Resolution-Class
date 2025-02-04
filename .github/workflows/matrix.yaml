@@ -3,7 +3,6 @@ on: push
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node-version: [14, 16, 18]
@@ -11,6 +10,8 @@ jobs:
         exclude:
           - node-version: 14
             os: windows-latest
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -22,7 +23,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          ls -la  # Debugging: List files to check if package.json exists
+          npm install
 
       - name: Run tests
         run: npm test
