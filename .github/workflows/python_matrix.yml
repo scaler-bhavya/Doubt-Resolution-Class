@@ -1,4 +1,4 @@
-name: Python Matrix Strategy Workflow
+name: Python Matrix Strategy Workflows
 
 on: push
 
