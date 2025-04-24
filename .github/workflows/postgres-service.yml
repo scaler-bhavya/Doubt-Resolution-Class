@@ -1,4 +1,4 @@
-name: PostgreSQL Service Workflow
+name: PostgreSQL Service Workflows
 on: push
 jobs:
   test:
